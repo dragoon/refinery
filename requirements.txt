@@ -2,3 +2,4 @@ requests
 apscheduler
 lifxlan
 pytz
+python-dotenv
