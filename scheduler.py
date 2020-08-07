@@ -30,6 +30,7 @@ def uvi_scheduler():
     print("Setting UV color:", uv_color)
     uv_bulb = get_uv_bulb()
     if uv_bulb is not None:
+        print("Bulb is found for UV index")
         uv_bulb.set_color(uv_color.to_lifx_color())
 
 
