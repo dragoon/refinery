@@ -20,7 +20,7 @@ def get_uv_bulb():
 
 
 @scheduler.scheduled_job(
-    "cron", day_of_week="*", hour="*", minute="*/10", timezone=timezone("Europe/Zurich")
+    "cron", day_of_week="*", hour="*", minute="*", timezone=timezone("Europe/Zurich")
 )
 def uvi_scheduler():
     uv_bulb = get_uv_bulb()
