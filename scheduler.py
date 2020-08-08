@@ -4,8 +4,8 @@ from pytz import timezone
 from dotenv import load_dotenv
 load_dotenv(verbose=True)
 
-from refinery.apis.weather import get_current_uv_index
-from refinery.apis.weather.color_util import uvi_to_color
+from refinery.apis.uvi import get_current_uv_index
+from refinery.apis.uvi.color_util import uvi_to_color
 from refinery.lights.lifx import get_light
 
 scheduler = BlockingScheduler()

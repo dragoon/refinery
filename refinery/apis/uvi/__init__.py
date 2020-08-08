@@ -7,4 +7,4 @@ UVI_URL = f"https://{API_URL}/v1/weather/uvi?lat={HOME_LATITUDE}&lon={HOME_LONGI
 
 def get_current_uv_index() -> float:
     result = requests.get(UVI_URL).json()
-    return result['value']
+    return result['uv']
