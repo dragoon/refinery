@@ -1,7 +1,7 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from pytz import timezone
 
 from dotenv import load_dotenv
+
 load_dotenv(verbose=True)
 
 from refinery.apis.uvi import get_current_uv_index
@@ -19,9 +19,7 @@ def get_uv_bulb():
     return UV_BULB
 
 
-@scheduler.scheduled_job(
-    "cron", day_of_week="*", hour="*", minute="*/10", timezone=timezone("Europe/Zurich")
-)
+@scheduler.scheduled_job("interval", minutes=10)
 def uvi_scheduler():
     uv_bulb = get_uv_bulb()
     if uv_bulb is not None:
