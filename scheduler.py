@@ -1,6 +1,7 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 from dotenv import load_dotenv
+from lifxlan import WorkflowException
 
 load_dotenv(verbose=True)
 
@@ -29,7 +30,11 @@ def uvi_scheduler():
         # 2. set color according to the weather
         uv_color = uvi_to_color(uv_index)
         print("Setting UV color:", uv_color)
-        uv_bulb.set_color(uv_color.to_lifx_color())
+        try:
+            uv_bulb.set_color(uv_color.to_lifx_color())
+        except WorkflowException:
+            global UV_BULB
+            UV_BULB = None
 
 
 scheduler.start()
