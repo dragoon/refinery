@@ -22,7 +22,7 @@ def get_uv_bulb():
     return UV_BULB
 
 
-@scheduler.scheduled_job("interval", minutes=1)
+@scheduler.scheduled_job("interval", minutes=10)
 def uvi_scheduler():
     uv_bulb = get_uv_bulb()
     if uv_bulb is not None:
