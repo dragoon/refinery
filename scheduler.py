@@ -22,16 +22,17 @@ def get_uv_bulb():
     return UV_BULB
 
 
-@scheduler.scheduled_job("interval", minutes=10)
+@scheduler.scheduled_job("interval", minutes=1)
 def uvi_scheduler():
     uv_bulb = get_uv_bulb()
     if uv_bulb is not None:
         logger.info("Bulb is found for UV index")
         # 1. get current UV index
         uv_index = get_current_uv_index()
+        logger.info("Current UV index: %s", uv_index)
         # 2. set color according to the weather
         uv_color = uvi_to_color(uv_index)
-        logger.info("Setting UV color:", uv_color)
+        logger.info("Setting UV color: %s", uv_color)
         try:
             uv_bulb.set_color(uv_color.to_lifx_color())
         except WorkflowException:
