@@ -19,13 +19,14 @@ def uvi_to_color(uv_index: float) -> Color:
         return Color(hue=hue, saturation=1, brightness=1, temperature=3500)
     elif uv_index < 11:
         # somewhat red
-        a = (8 - 46) / 3
-        b = (11 * 46 - 8 * 8) / 3
+        a = - 46 / 3
+        b = 11 * 46 / 3
         hue = int(a * uv_index + b)
         return Color(hue=hue, saturation=1, brightness=1, temperature=3500)
     else:
         # somewhat violet
-        a = (294 - 360) / 2
-        b = (13 * 360 - 11 * 294) / 2
-        hue = int(a * uv_index + b)
+        a = -20
+        b = 360 + 220
+        # not less than 300 (violet)
+        hue = max(300, int(a * uv_index + b))
         return Color(hue=hue, saturation=1, brightness=1, temperature=3500)
