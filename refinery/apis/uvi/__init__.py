@@ -1,10 +1,14 @@
 import requests
 
-from refinery.environ import API_URL, HOME_LATITUDE, HOME_LONGITUDE
+from refinery.environ import API_URL, HOME_LATITUDE, HOME_LONGITUDE, API_KEY
 
-UVI_URL = f"https://{API_URL}/v1/weather/uvi?lat={HOME_LATITUDE}&lon={HOME_LONGITUDE}"
+headers = {
+    "X-RapidAPI-Key": API_KEY,
+    "X-RapidAPI-Host": "dashboard25.p.rapidapi.com"
+}
+querystring = {"lat": HOME_LATITUDE, "lon": HOME_LONGITUDE}
 
 
 def get_current_uv_index() -> float:
-    result = requests.get(UVI_URL).json()
+    result = requests.request("GET", API_URL, headers=headers, params=querystring).json()
     return result['uv']
