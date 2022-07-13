@@ -26,7 +26,7 @@ def get_uv_bulb():
 def uvi_scheduler():
     uv_bulb = get_uv_bulb()
     if uv_bulb is not None:
-        logger.info(f"Bulb for UV index is found with IP address: {uv_bulb.get_ip_addr()}")
+        logger.info(f"Bulb with label {uv_bulb.label} is found with IP address: {uv_bulb.get_ip_addr()}")
         # 1. get current UV index
         uv_index = get_current_uv_index()
         logger.debug(f"Current UV index: {uv_index}")
@@ -36,6 +36,7 @@ def uvi_scheduler():
         try:
             uv_bulb.set_color(uv_color.to_lifx_color())
         except WorkflowException:
+            logger.info(f"The bulb is inactive {uv_bulb.label}")
             global UV_BULB
             UV_BULB = None
 
