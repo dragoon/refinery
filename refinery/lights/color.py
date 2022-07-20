@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Tuple
 
 
-@dataclass
+@dataclass(frozen=True)
 class Color:
     """
     color is [Hue (0-360), Saturation (0-1), Brightness (0-1), Temperature (in Kelvin)]
