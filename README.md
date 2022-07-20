@@ -1,8 +1,7 @@
 ## Refinery: a smart home project
 
-Set colors of smart bulbs based on the environment:
-* UV index
-* Stock market (TODO)
+Set colors of lights based on the:
+* UV index, automatically switches off the light if the UV Index is low
 
 Light bulbs supported:
 * LIFX
