@@ -1,7 +1,6 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 from dotenv import load_dotenv
-from lifxlan import WorkflowException
 
 from refinery.services.lifx.discovery_service import LifxDiscoveryService
 
@@ -28,12 +27,9 @@ def uvi_scheduler():
         # 2. set color according to the UV index
         uv_color = uv_index.get_color()
         logger.info(f"Setting UV color: {uv_color}")
-        try:
-            uv_bulb.set_color(uv_color)
-            if uv_index.is_low():
-                uv_bulb.switch_off()
-        except WorkflowException:
-            logger.info(f"The bulb is inactive {uv_bulb.label}")
+        uv_bulb.set_color(uv_color)
+        if uv_index.is_low():
+            uv_bulb.switch_off()
 
 
 scheduler.start()
