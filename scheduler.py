@@ -30,6 +30,8 @@ def uvi_scheduler():
         uv_bulb.set_color(uv_color)
         if uv_index.is_low():
             uv_bulb.switch_off()
+        else:
+            uv_bulb.switch_on()
 
 
 scheduler.start()
