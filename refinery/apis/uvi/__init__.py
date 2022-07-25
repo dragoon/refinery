@@ -7,7 +7,7 @@ headers = {
     "X-RapidAPI-Key": API_KEY,
     "X-RapidAPI-Host": "dashboard25.p.rapidapi.com"
 }
-querystring = {"lat": HOME_LATITUDE, "lon": HOME_LONGITUDE}
+querystring = {"lat": HOME_LATITUDE, "lon": HOME_LONGITUDE, "provider": "bitweather"}
 
 
 def get_current_uv_index() -> UVIndex:
