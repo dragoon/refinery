@@ -1,5 +1,3 @@
-from apscheduler.schedulers.blocking import BlockingScheduler
-
 from dotenv import load_dotenv
 
 from refinery.services.lifx.discovery_service import LifxDiscoveryService
@@ -9,15 +7,13 @@ load_dotenv(verbose=True)
 from refinery.logging_util import setup_logging
 from refinery.apis.uvi import get_current_uv_index
 
-scheduler = BlockingScheduler()
 logger = setup_logging()
 service = LifxDiscoveryService()
 
 LABEL = "uv_index"
 
 
-@scheduler.scheduled_job("interval", minutes=1)
-def uvi_scheduler():
+def update_lights():
     uv_bulbs = service.find_bulbs_by_label(LABEL)
     for uv_bulb in uv_bulbs:
         logger.info(f"Bulb with label '{LABEL}' is found with IP address: {uv_bulb.device.get_ip_addr()}")
@@ -34,4 +30,5 @@ def uvi_scheduler():
             uv_bulb.switch_on()
 
 
-scheduler.start()
+if __name__ == "__main__":
+    update_lights()
