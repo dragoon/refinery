@@ -12,7 +12,6 @@ LABEL = "uv_index"
 
 
 def update_lights():
-    logger.info("test")
     uv_bulbs = service.find_bulbs_by_label(LABEL)
     for uv_bulb in uv_bulbs:
         logger.info(f"Bulb with label '{LABEL}' is found with IP address: {uv_bulb.device.get_ip_addr()}")
