@@ -2,3 +2,4 @@ requests
 lifxlan
 pytz
 python-dotenv
+python-json-logger
