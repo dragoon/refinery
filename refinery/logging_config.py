@@ -75,11 +75,12 @@ class ProgramJsonFormatter(jsonlogger.JsonFormatter):
         return log_record
 
 
-def setup_logging(program_name: str) -> logging.Logger:
+def setup_logging(program_name: str):
+    """
+    :param program_name: used to name the log file and add attribute to json log records
+    """
     LOGGING_CONFIG["handlers"]["file"]["filename"] = f"{program_name}.log.json"
     logging.config.dictConfig(LOGGING_CONFIG)
     for handler in logging.getLogger("").handlers:
         if isinstance(handler.formatter, ProgramJsonFormatter):
             handler.formatter.program = program_name
-
-    return logging.getLogger(__name__)
