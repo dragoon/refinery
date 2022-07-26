@@ -1,7 +1,8 @@
 import logging
 
 from dotenv import load_dotenv
-from refinery.logging_config import setup_logging
+from ftechcore.util.logging import setup_logging
+
 from refinery.services.lifx.discovery_service import LifxDiscoveryService
 
 load_dotenv(verbose=True)
