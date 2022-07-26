@@ -45,7 +45,7 @@ LOGGING_CONFIG = {
         "file": {
             "class": "logging.handlers.RotatingFileHandler",
             "level": "DEBUG",
-            "filename": "program.log.json",
+            "filename": "program.json.log",
             "formatter": "json",
             "maxBytes": 10 * 1024 * 1024,  # 10 MB
             "backupCount": 5,
@@ -79,7 +79,7 @@ def setup_logging(program_name: str):
     """
     :param program_name: used to name the log file and add attribute to json log records
     """
-    LOGGING_CONFIG["handlers"]["file"]["filename"] = f"{program_name}.log.json"
+    LOGGING_CONFIG["handlers"]["file"]["filename"] = f"{program_name}.json.log"
     logging.config.dictConfig(LOGGING_CONFIG)
     for handler in logging.getLogger("").handlers:
         if isinstance(handler.formatter, ProgramJsonFormatter):
