@@ -3,4 +3,4 @@ lifxlan
 pytz
 python-dotenv
 python-json-logger
-git+https://github.com/FarawayTech/farawaytech-py-core.git#egg=farawaytech-py-core
+git+ssh://github.com/FarawayTech/farawaytech-py-core.git#egg=farawaytech-py-core
